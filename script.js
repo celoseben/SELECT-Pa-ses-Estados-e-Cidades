@@ -50,54 +50,60 @@ var campoEstado = "select[name*='mauticform[estado']";
 var campoCidade = "select[name*='mauticform[cidade]";
 
 function montaCidade(estado, pais){
-	$.ajax({
-		type:'GET',
-		url:'http://api.londrinaweb.com.br/PUC/Cidades/'+estado+'/'+pais+'/0/10000',
-		contentType: "application/json; charset=utf-8",
-		dataType: "jsonp",
-		async:false
-	}).done(function(response){
-		cidades='';
+	if (estado){
+		$.ajax({
+			type:'GET',
+			url:'http://api.londrinaweb.com.br/PUC/Cidades/'+estado+'/'+pais+'/0/10000',
+			contentType: "application/json; charset=utf-8",
+			dataType: "jsonp",
+			async:false
+		}).done(function(response){
+			//cidades='';
+			cidades='<option value="">Selecione</option>';
 
-		$.each(response, function(c, cidade){
+			$.each(response, function(c, cidade){
 
-			cidades+='<option value="'+cidade+'">'+cidade+'</option>';
+				cidades+='<option value="'+cidade+'">'+cidade+'</option>';
+
+			});
+
+			// PREENCHE AS CIDADES DE ACORDO COM O ESTADO
+			$(campoCidade).html(cidades);
 
 		});
-
-		// PREENCHE AS CIDADES DE ACORDO COM O ESTADO
-		$(campoCidade).html(cidades);
-
-	});
+	}
 }
 
 function montaUF(pais){
-	$.ajax({
-		type:'GET',
-		url:'http://api.londrinaweb.com.br/PUC/Estados/'+pais+'/0/10000',
-		contentType: "application/json; charset=utf-8",
-		dataType: "jsonp",
-		async:false
-	}).done(function(response){
-		estados='';
-		$.each(response, function(e, estado){
+	if (pais){
+		$.ajax({
+			type:'GET',
+			url:'http://api.londrinaweb.com.br/PUC/Estados/'+pais+'/0/10000',
+			contentType: "application/json; charset=utf-8",
+			dataType: "jsonp",
+			async:false
+		}).done(function(response){
+			//estados='';
+			estados='<option value="">Selecione</option>';
+			$.each(response, function(e, estado){
 
-			estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
-			//estados+='<option value="'+estado.Estado+'">'+estado.Estado+'</option>';
+				estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
+				//estados+='<option value="'+estado.Estado+'">'+estado.Estado+'</option>';
+
+			});
+			// PREENCHE OS ESTADOS BRASILEIROS
+			$(campoEstado).html(estados);
+
+			// CHAMA A FUNÇÃO QUE PREENCHE AS CIDADES DE ACORDO COM O ESTADO
+			montaCidade($(campoEstado).val(), pais);
+
+			// VERIFICA A MUDANÇA NO VALOR DO CAMPO ESTADO E ATUALIZA AS CIDADES
+			$(campoEstado).change(function(){
+				montaCidade($(this).val(), pais);
+			});
 
 		});
-		// PREENCHE OS ESTADOS BRASILEIROS
-		$(campoEstado).html(estados);
-
-		// CHAMA A FUNÇÃO QUE PREENCHE AS CIDADES DE ACORDO COM O ESTADO
-		montaCidade($(campoEstado).val(), pais);
-
-		// VERIFICA A MUDANÇA NO VALOR DO CAMPO ESTADO E ATUALIZA AS CIDADES
-		$(campoEstado).change(function(){
-			montaCidade($(this).val(), pais);
-		});
-
-	});
+	}
 }
 
 function montaPais(){
