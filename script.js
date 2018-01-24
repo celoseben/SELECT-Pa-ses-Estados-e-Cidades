@@ -1,8 +1,7 @@
 
 var xmlHttp;
 
-function GetXmlHttpObject()
-{
+function GetXmlHttpObject(){
 	var xmlHttp=null;
 	try
 	{
@@ -23,8 +22,7 @@ function GetXmlHttpObject()
 }
 
 
-function include(url)
-{
+function include(url){
 	xmlHttp=GetXmlHttpObject();
 	if (xmlHttp==null){return;}
 	xmlHttp.open("GET",url,true); 
@@ -46,6 +44,10 @@ function include(url)
 include('jquery-3.3.1.min.js');
 
 
+var campoPais = "";
+var campoEstado = "select[name*='mauticform[estado']";
+var campoCidade = "select[name*='mauticform[cidade]";
+
 function montaCidade(estado, pais){
 	$.ajax({
 		type:'GET',
@@ -63,7 +65,7 @@ function montaCidade(estado, pais){
 		});
 
 		// PREENCHE AS CIDADES DE ACORDO COM O ESTADO
-		$('#cidade').html(cidades);
+		$(campoCidade).html(cidades);
 
 	});
 }
@@ -82,15 +84,14 @@ function montaUF(pais){
 			estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
 
 		});
-
 		// PREENCHE OS ESTADOS BRASILEIROS
-		$('#estado').html(estados);
+		$(campoEstado).html(estados);
 
 		// CHAMA A FUNÇÃO QUE PREENCHE AS CIDADES DE ACORDO COM O ESTADO
-		montaCidade($('#estado').val(), pais);
+		montaCidade($(campoEstado).val(), pais);
 
 		// VERIFICA A MUDANÇA NO VALOR DO CAMPO ESTADO E ATUALIZA AS CIDADES
-		$('#estado').change(function(){
+		$(campoEstado).change(function(){
 			montaCidade($(this).val(), pais);
 		});
 
@@ -98,6 +99,8 @@ function montaUF(pais){
 }
 
 function montaPais(){
+	montaUF('BR');
+	return null;
 	$.ajax({
 		type:	'GET',
 		url:	'http://api.londrinaweb.com.br/PUC/Paisesv2/0/1000',
@@ -128,8 +131,8 @@ function montaPais(){
 		$('#pais').change(function(){
 			if($('#pais').val() == 'BR'){
 				// SE O VALOR FOR BR E CONFIRMA OS SELECTS
-				$('#estado').remove();
-				$('#cidade').remove();
+				$(campoEstado).remove();
+				$(campoCidade).remove();
 				$('#campo_estado').append('<select id="estado"></select>');
 				$('#campo_cidade').append('<select id="cidade"></select>');
 
@@ -137,8 +140,8 @@ function montaPais(){
 				montaUF('BR');		
 			} else {
 				// SE NÃO FOR, TROCA OS SELECTS POR INPUTS DE TEXTO
-				$('#estado').remove();
-				$('#cidade').remove();
+				$(campoEstado).remove();
+				$(campoCidade).remove();
 				$('#campo_estado').append('<input type="text" id="estado">');
 				$('#campo_cidade').append('<input type="text" id="cidade">');
 			}
