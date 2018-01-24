@@ -1,3 +1,5 @@
+import 'jquery-3.3.1.min.js';
+
 function montaCidade(estado, pais){
 	$.ajax({
 		type:'GET',
