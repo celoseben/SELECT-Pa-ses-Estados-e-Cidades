@@ -1,4 +1,50 @@
-require('jquery-3.3.1.min.js');
+
+var xmlHttp;
+
+function GetXmlHttpObject()
+{
+	var xmlHttp=null;
+	try
+	{
+		xmlHttp=new XMLHttpRequest();
+	}
+		catch (e)
+		{
+			try
+			{
+				xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+			}
+				catch (e)
+				{
+					xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+		}
+	return xmlHttp;
+}
+
+
+function include(url)
+{
+	xmlHttp=GetXmlHttpObject();
+	if (xmlHttp==null){return;}
+	xmlHttp.open("GET",url,true); 
+	xmlHttp.send(null);
+	xmlHttp.onreadystatechange = function()
+	{
+		if (xmlHttp.readyState==4)
+		{
+			if (xmlHttp.status==200)
+			{
+				eval(xmlHttp.responseText);
+				montaPais();
+			}
+		}
+	};
+}
+
+
+include('jquery-3.3.1.min.js');
+
 
 function montaCidade(estado, pais){
 	$.ajax({
@@ -100,5 +146,3 @@ function montaPais(){
 
 	});
 }
-
-montaPais();
