@@ -82,8 +82,8 @@ function montaUF(pais){
 		estados='';
 		$.each(response, function(e, estado){
 
-			//estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
-			estados+='<option value="'+estado.Estado+'">'+estado.Estado+'</option>';
+			estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
+			//estados+='<option value="'+estado.Estado+'">'+estado.Estado+'</option>';
 
 		});
 		// PREENCHE OS ESTADOS BRASILEIROS
