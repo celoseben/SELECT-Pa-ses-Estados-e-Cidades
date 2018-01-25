@@ -48,9 +48,17 @@ include('http://rawgit.com/celoseben/SELECT-Pa-ses-Estados-e-Cidades/master/jque
 var campoPais = "";
 var campoEstado = "select[name*='mauticform[estado']";
 var campoCidade = "select[name*='mauticform[cidade]";
+var estados_array = [];
 
 function montaCidade(estado, pais){
 	if (estado){
+		var valorUnicoEstado = estados_array.filter( function( elem ) {
+		    if (elem.Estado == estado){
+		    	estado = elem.UF;
+		    	//return elem.UF;
+		    	return true;
+		    }
+		});
 		$.ajax({
 			type:'GET',
 			url:'http://api.londrinaweb.com.br/PUC/Cidades/'+estado+'/'+pais+'/0/10000',
@@ -83,12 +91,13 @@ function montaUF(pais){
 			dataType: "jsonp",
 			async:false
 		}).done(function(response){
+			estados_array = response;
 			//estados='';
 			estados='<option value="">Selecione</option>';
 			$.each(response, function(e, estado){
 
-				estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
-				//estados+='<option value="'+estado.Estado+'">'+estado.Estado+'</option>';
+				//estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
+				estados+='<option value="'+estado.Estado+'">'+estado.Estado+'</option>';
 
 			});
 			// PREENCHE OS ESTADOS BRASILEIROS
