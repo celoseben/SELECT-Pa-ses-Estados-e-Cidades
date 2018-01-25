@@ -44,6 +44,12 @@ function include(url){
 //include('jquery-3.3.1.min.js');
 include('http://rawgit.com/celoseben/SELECT-Pa-ses-Estados-e-Cidades/master/jquery-3.3.1.min.js');
 
+setTimeout(function(){
+	$( "#mauticform_novoform" ).on( "submit", function( event ) {
+	  event.preventDefault();
+	  console.log($( this ).serializeArray());
+	});
+},1000)
 
 var campoPais = "";
 var campoEstado = "select[name*='mauticform[estado']";
