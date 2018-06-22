@@ -133,6 +133,7 @@ function montaPais(){
 	}).done(function(response){
 		
 		paises='';
+		paises+='<option value="estado2">Estado2</option>';
 
 		$.each(response, function(p, pais){
 
