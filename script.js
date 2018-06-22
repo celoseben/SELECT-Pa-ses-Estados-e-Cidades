@@ -100,7 +100,6 @@ function montaUF(pais){
 			estados_array = response;
 			//estados='';
 			estados='<option value="">Selecione</option>';
-			estados+='<option value="estado2">Estado2</option>';
 			$.each(response, function(e, estado){
 
 				//estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
