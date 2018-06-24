@@ -14,14 +14,14 @@ function loadJSONP(url, callback) {
 };
 
 //var selectEstado = document.querySelector("select[name*='mauticform[estado]'");
-var selectEstado = document.getElementsByName("mauticform[estado]")[0];
+var selectEstado = document.getElementsByName("mauticform[estado]");
 var selectCidade = document.querySelector("select[name*='mauticform[cidade]'");
 
 loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
 function generateState(data) {
     console.log("selectEstado");
-    console.log(selectEstado);
-    selectEstado.setAttribute('onchange', 'getCitys()');
+    console.log(selectEstado[0]);
+    selectEstado[0].setAttribute('onchange', 'getCitys()');
     for (var index = 0; index < data.length; index++) {
         var createSelect = document.createElement("option");
         createSelect.value = data[index].UF;
