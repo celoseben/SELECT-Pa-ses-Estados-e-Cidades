@@ -14,24 +14,26 @@ function loadJSONP(url, callback) {
 };
 
 //var selectEstado = document.querySelector("select[name*='mauticform[estado]'");
+//var selectCidade = document.querySelector("select[name*='mauticform[cidade]'");
 var selectEstado = document.getElementsByName("mauticform[estado]");
-var selectCidade = document.querySelector("select[name*='mauticform[cidade]'");
+var selectCidade = document.getElementsByName("mauticform[cidade]");
 
 loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
 function generateState(data) {
     console.log("selectEstado");
+    //console.log(selectEstado[0]);
     console.log(selectEstado[0]);
     selectEstado[0].setAttribute('onchange', 'getCitys()');
     for (var index = 0; index < data.length; index++) {
         var createSelect = document.createElement("option");
         createSelect.value = data[index].UF;
         createSelect.text = data[index].Estado;
-        selectEstado.append(createSelect);
+        selectEstado[0].append(createSelect);
     }
 }
 
 function getCitys() {
-    loadJSONP('http://api.londrinaweb.com.br/PUC/Cidades/' + selectEstado.options[selectEstado.selectedIndex].value + '/BR/0/10000', 'generateCity');
+    loadJSONP('http://api.londrinaweb.com.br/PUC/Cidades/' + selectEstado[0].options[selectEstado[0].selectedIndex].value + '/BR/0/10000', 'generateCity');
 }
 
 function generateCity(data) {
@@ -39,6 +41,6 @@ function generateCity(data) {
         var createSelect = document.createElement("option");
         createSelect.value = data[index];
         createSelect.text = data[index];
-        selectCidade.append(createSelect);
+        selectCidade[0].append(createSelect);
     }
 }
