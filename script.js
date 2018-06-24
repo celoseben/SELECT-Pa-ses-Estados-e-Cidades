@@ -42,7 +42,7 @@ function include(url){
 
 
 //include('jquery-3.3.1.min.js');
-//include('http://rawgit.com/celoseben/SELECT-Pa-ses-Estados-e-Cidades/master/jquery-3.3.1.min.js');
+include('http://rawgit.com/celoseben/SELECT-Pa-ses-Estados-e-Cidades/master/jquery-3.3.1.min.js');
 
 /*setTimeout(function(){
 	$("form").on( "submit", function( event ) {
