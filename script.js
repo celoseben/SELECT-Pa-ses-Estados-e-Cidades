@@ -38,6 +38,12 @@ function getCitys() {
 
 function generateCity(data) {
     selectCidade[0].innerHTML = ''
+    
+    var createSelect = document.createElement("option");
+    createSelect.value = '';
+    createSelect.text = 'Selecione';
+    selectCidade[0].append(createSelect);
+
     for (var index = 0; index < data.length; index++) {
         var createSelect = document.createElement("option");
         createSelect.value = data[index];
