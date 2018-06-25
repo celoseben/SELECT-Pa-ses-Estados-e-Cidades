@@ -37,7 +37,7 @@ function getCitys() {
 }
 
 function generateCity(data) {
-    selectCidade.innerHTML = ''
+    selectCidade[0].innerHTML = ''
     for (var index = 0; index < data.length; index++) {
         var createSelect = document.createElement("option");
         createSelect.value = data[index];
