@@ -20,9 +20,8 @@ var selectCidade = document.getElementsByName("mauticform[cidade]");
 
 loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
 function generateState(data) {
-    console.log("selectEstado");
-    //console.log(selectEstado[0]);
-    console.log(selectEstado[0]);
+    /*console.log("selectEstado");
+    console.log(selectEstado[0]);*/
     selectEstado[0].setAttribute('onchange', 'getCitys()');
     for (var index = 0; index < data.length; index++) {
         var createSelect = document.createElement("option");
