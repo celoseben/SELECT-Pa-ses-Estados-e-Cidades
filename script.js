@@ -51,7 +51,12 @@ function generateCity(data) {
     }
 }
 
-window.onload = function(){
+/*window.onload = function(){
   console.log('Onload disparado');
   loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
-}
+}*/
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("DOM completamente carregado e analisado");
+  loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
+});
