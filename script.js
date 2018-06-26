@@ -18,7 +18,7 @@ function loadJSONP(url, callback) {
 var selectEstado = document.getElementsByName("mauticform[estado]");
 var selectCidade = document.getElementsByName("mauticform[cidade]");
 
-loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
+//loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
 function generateState(data) {
     /*console.log("selectEstado");
     console.log(selectEstado[0]);*/
@@ -49,4 +49,9 @@ function generateCity(data) {
         createSelect.text = data[index];
         selectCidade[0].append(createSelect);
     }
+}
+
+window.onload = function(){
+  console.log('Onload disparado');
+  loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
 }
