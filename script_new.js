@@ -32,7 +32,7 @@ function generateState(data) {
 }
 
 function getCitys() {
-    loadJSONP('http://api.londrinaweb.com.br/PUC/Cidades/' + selectEstado[0].options[selectEstado[0].selectedIndex].value + '/BR/0/10000', 'generateCity');
+    loadJSONP('https://api.funil.pro/api/v1/plugins/cidades/' + selectEstado[0].options[selectEstado[0].selectedIndex].value, 'generateCity');
 }
 
 function generateCity(data) {
@@ -51,12 +51,7 @@ function generateCity(data) {
     }
 }
 
-/*window.onload = function(){
-  console.log('Onload disparado');
-  loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
-}*/
-
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM completamente carregado e analisado");
-  loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
+  loadJSONP('https://api.funil.pro/api/v1/plugins/estados', 'generateState');
 });
