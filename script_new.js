@@ -22,7 +22,13 @@ var selectCidade = document.getElementsByName("mauticform[cidade]");
 function generateState(data) {
     /*console.log("selectEstado");
     console.log(selectEstado[0]);*/
-    selectEstado[0].innerHTML = ''
+    selectEstado[0].innerHTML = '';
+    
+    var createSelect = document.createElement("option");
+    createSelect.value = '';
+    createSelect.text = '';
+    selectEstado[0].append(createSelect);
+    
     selectEstado[0].setAttribute('onchange', 'getCitys()');
     for (var index = 0; index < data.length; index++) {
         var createSelect = document.createElement("option");
