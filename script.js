@@ -61,4 +61,14 @@ function generateCity(data) {
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM completamente carregado e analisado");
   loadJSONP('https://api.funil.pro/api/v1/plugins/estados', 'generateState');
+    
+    document.addEventListener("DOMContentLoaded", function(event) {
+        setTimeout(function() {
+            document.querySelector("form").addEventListener("submit", function(e) {
+                $('html, body').animate({
+                    scrollTop: $(".mauticform-message").offset().top
+                });
+            });
+        }, 1000);
+    });
 });
