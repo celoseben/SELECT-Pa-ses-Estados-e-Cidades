@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.addEventListener("DOMContentLoaded", function(event) {
         setTimeout(function() {
             document.querySelector("form").addEventListener("submit", function(e) {
+                console.log("****** submit form ********");
                 $('html, body').animate({
                     scrollTop: $(".mauticform-message").offset().top
                 });
