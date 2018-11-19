@@ -63,10 +63,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   loadJSONP('https://api.funil.pro/api/v1/plugins/estados', 'generateState');
     
     setTimeout(function() {
-        console.log("*** timeout ***");
         document.querySelector("form").addEventListener("submit", function(e) {
             console.log("****** submit form ********");
-            $('html, body').animate({
+            $('html, body').animate({ // FOCAR NA MENSAGEM DE SUCESSO
                 scrollTop: $(".mauticform-message").offset().top
             });
         });
