@@ -20,8 +20,12 @@ var selectCidade = document.getElementsByName("mauticform[cidade]");
 
 //loadJSONP('http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000', 'generateState');
 function generateState(data) {
+
     /*console.log("selectEstado");
-    console.log(selectEstado[0]);*/
+    console.log(selectEstado[0]);
+    console.log("selectCidade");
+    console.log(selectCidade[0]);*/
+
     if (typeof(selectEstado) != 'undefined' && selectEstado != null) {
         selectEstado[0].innerHTML = '';
 
@@ -39,7 +43,7 @@ function generateState(data) {
         }
     }
     
-    if (typeof(selectCidade) != 'undefined' && selectCidade != null) {
+    if (typeof(selectCidade[0]) != 'undefined' && selectCidade[0] != null) {
         selectCidade[0].innerHTML = '';
         var createSelect = document.createElement("option");
         createSelect.value = '';
