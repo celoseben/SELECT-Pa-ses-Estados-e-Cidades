@@ -29,8 +29,6 @@ function generateState(data) {
     createSelect.text = 'Selecione seu estado';
     selectEstado[0].append(createSelect);
     
-    selectCidade[0].innerHTML = ''
-    
     var createSelect = document.createElement("option");
     createSelect.value = '';
     createSelect.text = 'Selecione sua cidade';
@@ -43,6 +41,8 @@ function generateState(data) {
         createSelect.text = data[index].Estado;
         selectEstado[0].append(createSelect);
     }
+    
+    selectCidade[0].innerHTML = '';
 }
 
 function getCitys() {
