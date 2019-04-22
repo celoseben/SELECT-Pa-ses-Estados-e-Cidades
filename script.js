@@ -22,27 +22,30 @@ var selectCidade = document.getElementsByName("mauticform[cidade]");
 function generateState(data) {
     /*console.log("selectEstado");
     console.log(selectEstado[0]);*/
-    selectEstado[0].innerHTML = '';
-    
-    var createSelect = document.createElement("option");
-    createSelect.value = '';
-    createSelect.text = 'Selecione seu estado';
-    selectEstado[0].append(createSelect);
-    
-    var createSelect = document.createElement("option");
-    createSelect.value = '';
-    createSelect.text = 'Selecione sua cidade';
-    selectCidade[0].append(createSelect);
-    
-    selectEstado[0].setAttribute('onchange', 'getCitys()');
-    for (var index = 0; index < data.length; index++) {
+    if (typeof(selectEstado) != 'undefined' && selectEstado != null) {
+        selectEstado[0].innerHTML = '';
+
         var createSelect = document.createElement("option");
-        createSelect.value = data[index].UF;
-        createSelect.text = data[index].Estado;
+        createSelect.value = '';
+        createSelect.text = 'Selecione seu estado';
         selectEstado[0].append(createSelect);
+
+        selectEstado[0].setAttribute('onchange', 'getCitys()');
+        for (var index = 0; index < data.length; index++) {
+            var createSelect = document.createElement("option");
+            createSelect.value = data[index].UF;
+            createSelect.text = data[index].Estado;
+            selectEstado[0].append(createSelect);
+        }
     }
     
-    selectCidade[0].innerHTML = '';
+    if (typeof(selectCidade) != 'undefined' && selectCidade != null) {
+        selectCidade[0].innerHTML = '';
+        var createSelect = document.createElement("option");
+        createSelect.value = '';
+        createSelect.text = 'Selecione sua cidade';
+        selectCidade[0].append(createSelect);
+    }
 }
 
 function getCitys() {
