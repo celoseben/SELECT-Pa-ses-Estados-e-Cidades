@@ -26,7 +26,7 @@ function generateState(data) {
     console.log("selectCidade");
     console.log(selectCidade[0]);*/
 
-    if (typeof(selectEstado) != 'undefined' && selectEstado != null) {
+    if (typeof(selectEstado[0]) != 'undefined' && selectEstado[0] != null) {
         selectEstado[0].innerHTML = '';
 
         var createSelect = document.createElement("option");
